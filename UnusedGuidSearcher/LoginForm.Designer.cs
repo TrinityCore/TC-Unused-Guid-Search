@@ -1,0 +1,169 @@
+﻿namespace UnusedGuidSearcher
+{
+    partial class LoginForm
+    {
+        /// <summary>
+        /// Required designer variable.
+        /// </summary>
+        private System.ComponentModel.IContainer components = null;
+
+        /// <summary>
+        /// Clean up any resources being used.
+        /// </summary>
+        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        #region Windows Form Designer generated code
+
+        /// <summary>
+        /// Required method for Designer support - do not modify
+        /// the contents of this method with the code editor.
+        /// </summary>
+        private void InitializeComponent()
+        {
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.PasswordBox = new System.Windows.Forms.TextBox();
+            this.DBBox = new System.Windows.Forms.TextBox();
+            this.UserBox = new System.Windows.Forms.TextBox();
+            this.HostBox = new System.Windows.Forms.TextBox();
+            this.OkButton = new System.Windows.Forms.Button();
+            this.SaveButton = new System.Windows.Forms.Button();
+            this.SuspendLayout();
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label1.Location = new System.Drawing.Point(36, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "User:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label2.Location = new System.Drawing.Point(36, 87);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(32, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Host:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label4.Location = new System.Drawing.Point(12, 61);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(56, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Database:";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label5.Location = new System.Drawing.Point(12, 35);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(56, 13);
+            this.label5.TabIndex = 4;
+            this.label5.Text = "Password:";
+            // 
+            // PasswordBox
+            // 
+            this.PasswordBox.Location = new System.Drawing.Point(74, 32);
+            this.PasswordBox.Name = "PasswordBox";
+            this.PasswordBox.Size = new System.Drawing.Size(100, 20);
+            this.PasswordBox.TabIndex = 1;
+            // 
+            // DBBox
+            // 
+            this.DBBox.Location = new System.Drawing.Point(74, 58);
+            this.DBBox.Name = "DBBox";
+            this.DBBox.Size = new System.Drawing.Size(100, 20);
+            this.DBBox.TabIndex = 2;
+            // 
+            // UserBox
+            // 
+            this.UserBox.Location = new System.Drawing.Point(74, 6);
+            this.UserBox.Name = "UserBox";
+            this.UserBox.Size = new System.Drawing.Size(100, 20);
+            this.UserBox.TabIndex = 0;
+            // 
+            // HostBox
+            // 
+            this.HostBox.Location = new System.Drawing.Point(74, 84);
+            this.HostBox.Name = "HostBox";
+            this.HostBox.Size = new System.Drawing.Size(100, 20);
+            this.HostBox.TabIndex = 3;
+            // 
+            // OkButton
+            // 
+            this.OkButton.Location = new System.Drawing.Point(99, 121);
+            this.OkButton.Name = "OkButton";
+            this.OkButton.Size = new System.Drawing.Size(75, 23);
+            this.OkButton.TabIndex = 5;
+            this.OkButton.Text = "Ok";
+            this.OkButton.UseVisualStyleBackColor = true;
+            this.OkButton.Click += new System.EventHandler(this.OkButtonClick);
+            // 
+            // SaveButton
+            // 
+            this.SaveButton.Location = new System.Drawing.Point(12, 121);
+            this.SaveButton.Name = "SaveButton";
+            this.SaveButton.Size = new System.Drawing.Size(75, 23);
+            this.SaveButton.TabIndex = 4;
+            this.SaveButton.Text = "Save";
+            this.SaveButton.UseVisualStyleBackColor = true;
+            this.SaveButton.Click += new System.EventHandler(this.SaveButtonClick);
+            // 
+            // LoginForm
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.DarkSlateGray;
+            this.ClientSize = new System.Drawing.Size(185, 155);
+            this.Controls.Add(this.SaveButton);
+            this.Controls.Add(this.OkButton);
+            this.Controls.Add(this.HostBox);
+            this.Controls.Add(this.UserBox);
+            this.Controls.Add(this.DBBox);
+            this.Controls.Add(this.PasswordBox);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
+            this.Name = "LoginForm";
+            this.Text = "TC Unused Guid Search";
+            this.Load += new System.EventHandler(this.LoginFormLoad);
+            this.ResumeLayout(false);
+            this.PerformLayout();
+
+        }
+
+        #endregion
+
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.TextBox PasswordBox;
+        private System.Windows.Forms.TextBox DBBox;
+        private System.Windows.Forms.TextBox UserBox;
+        private System.Windows.Forms.TextBox HostBox;
+        private System.Windows.Forms.Button OkButton;
+        private System.Windows.Forms.Button SaveButton;
+    }
+}
