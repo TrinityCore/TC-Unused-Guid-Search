@@ -44,10 +44,11 @@ namespace UnusedGuidSearcher
 
         private void OkButtonClick(object sender, EventArgs e)
         {
+            SaveSettings();
+
             if (!TestConnection())
                 return;
 
-            SaveSettings();
             Close();
             new Thread(StartMainForm).Start();
         }
@@ -73,6 +74,7 @@ namespace UnusedGuidSearcher
                 MessageBox.Show(ex.Message, "Could not connect.", MessageBoxButtons.RetryCancel,
                     MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
                 // ReSharper restore LocalizableElement
+                result = false;
             }
             finally
             {
@@ -80,7 +82,6 @@ namespace UnusedGuidSearcher
                 {
                     connection.Close();
                     connection.Dispose();
-                    result = false;
                 }
             }
 
