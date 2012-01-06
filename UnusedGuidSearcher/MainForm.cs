@@ -9,20 +9,11 @@ namespace UnusedGuidSearcher
     public partial class MainForm : Form
     {
         private readonly object[] _supportedTables = {"`creature`", "`gameobject`", "`waypoint_scripts`"};
-
-        private readonly string _username;
-        private readonly string _password;
-        private readonly string  _database;
-        private readonly string _host;
         private static string _connectionString;
 
-        public MainForm(string username, string password, string database, string host)
+        public MainForm(string connectionString)
         {
-            _username = username;
-            _password = password;
-            _database = database;
-            _host = host;
-
+            _connectionString = connectionString;
             InitializeComponent();
         }
 
@@ -32,36 +23,6 @@ namespace UnusedGuidSearcher
             TableComboBox.Items.AddRange(_supportedTables);
             TableComboBox.Text = _supportedTables[0] as string;
             RandomRadio.Checked = true;
-
-            _connectionString =
-                string.Format("SERVER={0};DATABASE={1};UID={2};PASSWORD={3};", _host, _database, _username, _password);
-
-            TestConnection();
-        }
-
-        private static void TestConnection()
-        {
-            MySqlConnection connection = null;
-            try
-            {
-                connection = new MySqlConnection(_connectionString);
-                connection.Open();
-            }
-            catch (Exception ex)
-            {
-// ReSharper disable LocalizableElement
-                MessageBox.Show(ex.Message, "Could not connect.", MessageBoxButtons.RetryCancel,
-                    MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
-// ReSharper restore LocalizableElement
-            }
-            finally
-            {
-                if (connection != null)
-                {
-                    connection.Close();
-                    connection.Dispose();
-                }
-            }
         }
 
         private void GoButtonClick(object sender, EventArgs e)
