@@ -4,12 +4,12 @@ using System.Xml;
 
 namespace UnusedGuidSearcher
 {
-    public static class Settings // By circumpunct
+    public class Settings // By circumpunct
     {
-        static readonly XmlDocument _xmlDocument = new XmlDocument();
-        static readonly string _documentPath = Application.StartupPath + "//settings.xml";
+        readonly XmlDocument _xmlDocument = new XmlDocument();
+        readonly string _documentPath = Application.StartupPath + "//settings.xml";
 
-        static Settings()
+        public Settings()
         {
             try
             {
@@ -21,30 +21,34 @@ namespace UnusedGuidSearcher
             }
         }
 
-        public static int GetSetting(string xPath, int defaultValue)
+        public int GetSetting(string xPath, int defaultValue)
         {
             return Convert.ToInt16(GetSetting(xPath, Convert.ToString(defaultValue)));
         }
 
-        public static void PutSetting(string xPath, int value)
+        public void PutSetting(string xPath, int value)
         {
             PutSetting(xPath, Convert.ToString(value));
         }
 
-        public static string GetSetting(string xPath, string defaultValue)
+        public string GetSetting(string xPath, string defaultValue)
         {
             var xmlNode = _xmlDocument.SelectSingleNode("settings/" + xPath);
             return xmlNode != null ? xmlNode.InnerText : defaultValue;
         }
 
-        public static void PutSetting(string xPath, string value)
+        public void PutSetting(string xPath, string value)
         {
             var xmlNode = _xmlDocument.SelectSingleNode("settings/" + xPath) ?? CreateMissingNode("settings/" + xPath);
             xmlNode.InnerText = value;
-            _xmlDocument.Save(_documentPath);
+            try
+            {
+                _xmlDocument.Save(_documentPath);
+            }
+            catch { } // Silently error, program can still work
         }
 
-        private static XmlNode CreateMissingNode(string xPath)
+        private XmlNode CreateMissingNode(string xPath)
         {
             var xPathSections = xPath.Split('/');
             var currentXPath = "";

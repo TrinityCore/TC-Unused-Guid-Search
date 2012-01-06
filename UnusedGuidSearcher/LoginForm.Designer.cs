@@ -37,7 +37,6 @@
             this.UserBox = new System.Windows.Forms.TextBox();
             this.HostBox = new System.Windows.Forms.TextBox();
             this.OkButton = new System.Windows.Forms.Button();
-            this.SaveButton = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -110,7 +109,7 @@
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(99, 121);
+            this.OkButton.Location = new System.Drawing.Point(54, 120);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
             this.OkButton.TabIndex = 5;
@@ -118,23 +117,12 @@
             this.OkButton.UseVisualStyleBackColor = true;
             this.OkButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
-            // SaveButton
-            // 
-            this.SaveButton.Location = new System.Drawing.Point(12, 121);
-            this.SaveButton.Name = "SaveButton";
-            this.SaveButton.Size = new System.Drawing.Size(75, 23);
-            this.SaveButton.TabIndex = 4;
-            this.SaveButton.Text = "Save";
-            this.SaveButton.UseVisualStyleBackColor = true;
-            this.SaveButton.Click += new System.EventHandler(this.SaveButtonClick);
-            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(185, 155);
-            this.Controls.Add(this.SaveButton);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.HostBox);
             this.Controls.Add(this.UserBox);
@@ -164,6 +152,5 @@
         private System.Windows.Forms.TextBox UserBox;
         private System.Windows.Forms.TextBox HostBox;
         private System.Windows.Forms.Button OkButton;
-        private System.Windows.Forms.Button SaveButton;
     }
 }

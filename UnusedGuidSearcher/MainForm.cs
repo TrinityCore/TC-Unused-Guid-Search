@@ -10,14 +10,19 @@ namespace UnusedGuidSearcher
     {
         private readonly object[] _supportedTables = {"`creature`", "`gameobject`", "`waypoint_scripts`"};
 
-        private string _username;
-        private string _password;
-        private string  _database;
-        private string _host;
+        private readonly string _username;
+        private readonly string _password;
+        private readonly string  _database;
+        private readonly string _host;
         private static string _connectionString;
 
-        public MainForm()
+        public MainForm(string username, string password, string database, string host)
         {
+            _username = username;
+            _password = password;
+            _database = database;
+            _host = host;
+
             InitializeComponent();
         }
 
@@ -27,12 +32,6 @@ namespace UnusedGuidSearcher
             TableComboBox.Items.AddRange(_supportedTables);
             TableComboBox.Text = _supportedTables[0] as string;
             RandomRadio.Checked = true;
-
-            // DB
-            _username = Settings.GetSetting("User", "root");
-            _password = Settings.GetSetting("Password", string.Empty);
-            _database = Settings.GetSetting("DB", "world");
-            _host = Settings.GetSetting("Host", "localhost");
 
             _connectionString =
                 string.Format("SERVER={0};DATABASE={1};UID={2};PASSWORD={3};", _host, _database, _username, _password);

@@ -33,9 +33,14 @@
             // 
             // ResultBox
             // 
+            this.ResultBox.AcceptsReturn = true;
+            this.ResultBox.AcceptsTab = true;
             this.ResultBox.Location = new System.Drawing.Point(13, 13);
+            this.ResultBox.MaxLength = 1073741823;
             this.ResultBox.Multiline = true;
             this.ResultBox.Name = "ResultBox";
+            this.ResultBox.ReadOnly = true;
+            this.ResultBox.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
             this.ResultBox.Size = new System.Drawing.Size(186, 237);
             this.ResultBox.TabIndex = 0;
             // 
