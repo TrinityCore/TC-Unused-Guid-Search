@@ -62,7 +62,7 @@ namespace UnusedGuidSearcher
             if (RandomRadio.Checked)
                 selectedMissingGuids = missingGuids.Take((int)GuidCountUpDown.Value);
             else if (ConsecutiveRadio.Checked)
-                selectedMissingGuids = MahMethod(missingGuids.ToArray(), (int) GuidCountUpDown.Value);
+                selectedMissingGuids = GetConsecutiveGuids(missingGuids.ToArray(), (int) GuidCountUpDown.Value);
             else
                 MessageBox.Show("Gratz, you just opened a black hole.");
 
@@ -70,7 +70,7 @@ namespace UnusedGuidSearcher
             resultForm.Show();
         }
 
-        private static IEnumerable<int> MahMethod(int[] input, int minimum)
+        private static IEnumerable<int> GetConsecutiveGuids(int[] input, int minimum)
         {
             var count = 1;
 
@@ -83,7 +83,11 @@ namespace UnusedGuidSearcher
                     count++;
                     result.Add(input[i]);
                 }
-                else break;
+                else
+                {
+                    result = new List<int>();
+                    count = 1;
+                }
 
                 if (count > minimum)
                     return result;
