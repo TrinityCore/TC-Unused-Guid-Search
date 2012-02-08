@@ -8,7 +8,14 @@ namespace UnusedGuidSearcher
 {
     public partial class MainForm : Form
     {
-        private readonly object[] _supportedTables = {"`creature`", "`gameobject`", "`waypoint_scripts`"};
+        private readonly Dictionary<object, string> _supportedTables = new Dictionary<object, string>
+        {
+	        {"`creature`", "`guid`"},
+	        {"`gameobject`", "`guid`"},
+	        {"`waypoint_scripts`", "`guid`"},
+	        {"`pool_template`", "`entry`"}
+	    };
+
         private static string _connectionString;
 
         public MainForm(string connectionString)
@@ -20,8 +27,8 @@ namespace UnusedGuidSearcher
         private void MainFormLoad(object sender, EventArgs e)
         {
             // Defaults
-            TableComboBox.Items.AddRange(_supportedTables);
-            TableComboBox.Text = _supportedTables[0] as string;
+            TableComboBox.Items.AddRange(_supportedTables.Keys.ToArray());
+            TableComboBox.Text = (string) TableComboBox.Items[0];
             RandomRadio.Checked = true;
         }
 
@@ -34,22 +41,13 @@ namespace UnusedGuidSearcher
             {
                 var connection = new MySqlConnection(_connectionString);
                 connection.Open();
-                var query = new MySqlCommand(string.Format("SELECT `guid` FROM {0}", selectedTable), connection);
+                var query = new MySqlCommand(string.Format("SELECT {0} FROM {1}", _supportedTables[selectedTable], selectedTable), connection);
                 reader = query.ExecuteReader();
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-            /*
-            var table = new DataTable();
-            if (reader != null) table.Load(reader);
-            var existingGuids = new HashSet<int>();
-            var col = table.Columns[0]; // guid is always first collumn
-            foreach (DataRow row in table.Rows)
-                existingGuids.Add((int)row[col]);
-             */
 
             var existingGuids = new List<int>();
             while (reader != null && reader.Read())
@@ -63,8 +61,6 @@ namespace UnusedGuidSearcher
                 selectedMissingGuids = missingGuids.Take((int)GuidCountUpDown.Value);
             else if (ConsecutiveRadio.Checked)
                 selectedMissingGuids = GetConsecutiveGuids(missingGuids.ToArray(), (int) GuidCountUpDown.Value);
-            else
-                MessageBox.Show("Gratz, you just opened a black hole.");
 
             var resultForm = new ResultForm(selectedMissingGuids);
             resultForm.Show();
