@@ -13,7 +13,8 @@ namespace UnusedGuidSearcher
 	        {"`creature`", "`guid`"},
 	        {"`gameobject`", "`guid`"},
 	        {"`waypoint_scripts`", "`guid`"},
-	        {"`pool_template`", "`entry`"}
+            {"`pool_template`", "`entry`"},
+            {"`game_event`", "`eventEntry`"},
 	    };
 
         private static string _connectionString;
