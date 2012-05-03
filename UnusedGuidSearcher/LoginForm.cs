@@ -12,6 +12,7 @@ namespace UnusedGuidSearcher
         private string _username;
         private string _password;
         private string _database;
+        private string _port;
         private string _host;
         private string _connectionString;
 
@@ -26,20 +27,23 @@ namespace UnusedGuidSearcher
             PasswordBox.Text = _settings.GetSetting("Password", string.Empty);
             DBBox.Text = _settings.GetSetting("DB", "world");
             HostBox.Text = _settings.GetSetting("Host", "localhost");
+            PortBox.Text = _settings.GetSetting("Port", "port");
         }
 
         private void SaveSettings()
         {
             _username = UserBox.Text;
             _password = PasswordBox.Text;
+            _port = PortBox.Text;
             _database = DBBox.Text;
             _host = HostBox.Text;
-            _connectionString = string.Format("SERVER={0};DATABASE={1};UID={2};PASSWORD={3};", _host, _database, _username, _password);
+            _connectionString = string.Format("SERVER={0};PORT={1};DATABASE={2};UID={3};PASSWORD={4};", _host, _port, _database, _username, _password);
 
             _settings.PutSetting("User", _username);
             _settings.PutSetting("Password", _password);
             _settings.PutSetting("DB", _database);
             _settings.PutSetting("Host", _host);
+            _settings.PutSetting("Port", _port);
         }
 
         private void OkButtonClick(object sender, EventArgs e)
