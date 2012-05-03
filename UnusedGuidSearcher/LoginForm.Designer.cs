@@ -37,6 +37,8 @@
             this.UserBox = new System.Windows.Forms.TextBox();
             this.HostBox = new System.Windows.Forms.TextBox();
             this.OkButton = new System.Windows.Forms.Button();
+            this.label3 = new System.Windows.Forms.Label();
+            this.PortBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -53,7 +55,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label2.Location = new System.Drawing.Point(36, 87);
+            this.label2.Location = new System.Drawing.Point(36, 89);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(32, 13);
             this.label2.TabIndex = 1;
@@ -63,7 +65,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label4.Location = new System.Drawing.Point(12, 61);
+            this.label4.Location = new System.Drawing.Point(12, 63);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(56, 13);
             this.label4.TabIndex = 3;
@@ -89,7 +91,7 @@
             // 
             // DBBox
             // 
-            this.DBBox.Location = new System.Drawing.Point(74, 58);
+            this.DBBox.Location = new System.Drawing.Point(74, 60);
             this.DBBox.Name = "DBBox";
             this.DBBox.Size = new System.Drawing.Size(100, 20);
             this.DBBox.TabIndex = 2;
@@ -103,14 +105,14 @@
             // 
             // HostBox
             // 
-            this.HostBox.Location = new System.Drawing.Point(74, 84);
+            this.HostBox.Location = new System.Drawing.Point(74, 86);
             this.HostBox.Name = "HostBox";
             this.HostBox.Size = new System.Drawing.Size(100, 20);
             this.HostBox.TabIndex = 3;
             // 
             // OkButton
             // 
-            this.OkButton.Location = new System.Drawing.Point(54, 120);
+            this.OkButton.Location = new System.Drawing.Point(53, 181);
             this.OkButton.Name = "OkButton";
             this.OkButton.Size = new System.Drawing.Size(75, 23);
             this.OkButton.TabIndex = 5;
@@ -118,12 +120,32 @@
             this.OkButton.UseVisualStyleBackColor = true;
             this.OkButton.Click += new System.EventHandler(this.OkButtonClick);
             // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
+            this.label3.Location = new System.Drawing.Point(36, 112);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(29, 13);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "Port:";
+            // 
+            // PortBox
+            // 
+            this.PortBox.Location = new System.Drawing.Point(74, 112);
+            this.PortBox.Name = "PortBox";
+            this.PortBox.Size = new System.Drawing.Size(100, 20);
+            this.PortBox.TabIndex = 7;
+            this.PortBox.Text = "3724";
+            // 
             // LoginForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
-            this.ClientSize = new System.Drawing.Size(185, 155);
+            this.ClientSize = new System.Drawing.Size(185, 216);
+            this.Controls.Add(this.PortBox);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.OkButton);
             this.Controls.Add(this.HostBox);
             this.Controls.Add(this.UserBox);
@@ -153,5 +175,7 @@
         private System.Windows.Forms.TextBox UserBox;
         private System.Windows.Forms.TextBox HostBox;
         private System.Windows.Forms.Button OkButton;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TextBox PortBox;
     }
 }
