@@ -31,9 +31,26 @@ namespace UnusedGuidSearcher
             PortBox.Text = _settings.GetSetting("Port", "3306");
 
             // sets the checkbox for a piped connection if the user has it saved in the settings
-            if (PortBox.Text == "-1")
+            if (IsUsingNamedPipeCheckbox.Checked == true)
             {
-                IsUsingNamedPipeCheckbox.Checked = true;
+                PortBox.Enabled = false;
+                PipeBox.Enabled = true;
+                PortBox.Text = string.Empty; // clear the string
+                PortBox.Text = "-1"; // sets port to -1 for a named pipe
+            }
+
+            if (IsUsingNamedPipeCheckbox.Checked == false)
+            {
+                PortBox.Enabled = true;
+                PipeBox.Enabled = false;
+                PortBox.Text = string.Empty; //clear the string
+                PortBox.Text = _settings.GetSetting("Port", "3306"); // saved setting
+
+                // this sets the default port again if someone used a named pipe and didn't have a value before that in the portbox box.
+                if (PortBox.Text == "-1")
+                {
+                    PortBox.Text = "3306";
+                }
             }
         }
 
