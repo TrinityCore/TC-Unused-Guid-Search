@@ -14,7 +14,7 @@ namespace UnusedGuidSearcher
         private string _database;
         private string _port;
         private string _host;
-        private string _connectionString;
+        private string _pipe;
 
         public LoginForm()
         {
@@ -27,7 +27,8 @@ namespace UnusedGuidSearcher
             PasswordBox.Text = _settings.GetSetting("Password", string.Empty);
             DBBox.Text = _settings.GetSetting("DB", "world");
             HostBox.Text = _settings.GetSetting("Host", "localhost");
-            PortBox.Text = _settings.GetSetting("Port", "port");
+            PipeBox.Text = _settings.GetSetting("Pipe", "");
+            PortBox.Text = _settings.GetSetting("Port", "3724");
         }
 
         private void SaveSettings()
@@ -37,24 +38,27 @@ namespace UnusedGuidSearcher
             _port = PortBox.Text;
             _database = DBBox.Text;
             _host = HostBox.Text;
-            _connectionString = string.Format("SERVER={0};PORT={1};DATABASE={2};UID={3};PASSWORD={4};", _host, _port, _database, _username, _password);
+            _pipe = PipeBox.Text;
+
 
             _settings.PutSetting("User", _username);
             _settings.PutSetting("Password", _password);
             _settings.PutSetting("DB", _database);
             _settings.PutSetting("Host", _host);
+            _settings.PutSetting("Pipe", _pipe);
             _settings.PutSetting("Port", _port);
         }
 
-        private void OkButtonClick(object sender, EventArgs e)
+        private String _connectionString
         {
-            SaveSettings();
+            get
+            {
+                if (PortBox.Text == "-1")
+                    //Server=localhost;Pipe={0};UserID={1};Password={2};Database={3};CharacterSet=utf8;ConnectionTimeout=5;ConnectionProtocol=Pipe;
+                    return String.Format("SERVER={0};PIPE={1};UID={2};PASSWORD={3};DATABASE={4};ConnectionProtocol=Pipe;", _host, _pipe, _database, _username, _password);
 
-            if (!TestConnection())
-                return;
-
-            Close();
-            new Thread(StartMainForm).Start();
+                return String.Format("SERVER={0};PORT={1};DATABASE={2};UID={3};PASSWORD={4};", _host, _port, _database, _username, _password);
+            }
         }
 
         private void StartMainForm()
@@ -90,6 +94,34 @@ namespace UnusedGuidSearcher
             }
 
             return result;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+            if (checkBox1.Checked)
+            {
+                PortBox.Enabled = false;
+                PortBox.Text = ""; // clear the string
+                PortBox.Text = "-1"; // sets port to -1 for a named pipe
+            }
+
+            if (checkBox1.Checked == false)
+            {
+                PortBox.Enabled = true;
+                PortBox.Text = ""; //clear the string
+                PortBox.Text = _settings.GetSetting("Port", "3724"); // saved setting
+            }
+        }
+
+        private void OkButton_Click(object sender, EventArgs e)
+        {
+            SaveSettings();
+
+            if (!TestConnection())
+                return;
+
+            Close();
+            new Thread(StartMainForm).Start();
         }
     }
 }

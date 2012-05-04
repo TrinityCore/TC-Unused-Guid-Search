@@ -13,7 +13,7 @@ namespace UnusedGuidSearcher
         {
             try
             {
-                _xmlDocument.Load(_documentPath); 
+                _xmlDocument.Load(_documentPath);
             }
             catch
             {
