@@ -118,6 +118,12 @@ namespace UnusedGuidSearcher
                 PipeBox.Enabled = false;
                 PortBox.Text = string.Empty; //clear the string
                 PortBox.Text = _settings.GetSetting("Port", "3306"); // saved setting
+
+                // this sets the default port again if someone used a named pipe and didn't have a value before that in the portbox box.
+                if (PortBox.Text == "-1")
+                {
+                    PortBox.Text = "3306";
+                }
             }
         }
 
