@@ -138,7 +138,7 @@
             this.PortBox.Name = "PortBox";
             this.PortBox.Size = new System.Drawing.Size(100, 20);
             this.PortBox.TabIndex = 7;
-            this.PortBox.Text = "3724";
+            this.PortBox.Text = "3306";
             // 
             // IsUsingNamedPipeCheckbox
             // 

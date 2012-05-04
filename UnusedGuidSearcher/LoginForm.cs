@@ -28,7 +28,7 @@ namespace UnusedGuidSearcher
             DBBox.Text = _settings.GetSetting("DB", "world");
             HostBox.Text = _settings.GetSetting("Host", "localhost");
             PipeBox.Text = _settings.GetSetting("Pipe", string.Empty);
-            PortBox.Text = _settings.GetSetting("Port", "3724");
+            PortBox.Text = _settings.GetSetting("Port", "3306");
 
             // sets the checkbox for a piped connection if the user has it saved in the settings
             if (PortBox.Text == "-1")
@@ -117,7 +117,7 @@ namespace UnusedGuidSearcher
                 PortBox.Enabled = true;
                 PipeBox.Enabled = false;
                 PortBox.Text = string.Empty; //clear the string
-                PortBox.Text = _settings.GetSetting("Port", "3724"); // saved setting
+                PortBox.Text = _settings.GetSetting("Port", "3306"); // saved setting
             }
         }
 
