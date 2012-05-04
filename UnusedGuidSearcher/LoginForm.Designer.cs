@@ -39,7 +39,7 @@
             this.OkButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.PortBox = new System.Windows.Forms.TextBox();
-            this.checkBox1 = new System.Windows.Forms.CheckBox();
+            this.IsUsingNamedPipeCheckbox = new System.Windows.Forms.CheckBox();
             this.PipeBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
@@ -140,17 +140,17 @@
             this.PortBox.TabIndex = 7;
             this.PortBox.Text = "3724";
             // 
-            // checkBox1
+            // IsUsingNamedPipeCheckbox
             // 
-            this.checkBox1.AutoSize = true;
-            this.checkBox1.ForeColor = System.Drawing.Color.White;
-            this.checkBox1.Location = new System.Drawing.Point(21, 112);
-            this.checkBox1.Name = "checkBox1";
-            this.checkBox1.Size = new System.Drawing.Size(47, 17);
-            this.checkBox1.TabIndex = 8;
-            this.checkBox1.Text = "Pipe";
-            this.checkBox1.UseVisualStyleBackColor = true;
-            this.checkBox1.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            this.IsUsingNamedPipeCheckbox.AutoSize = true;
+            this.IsUsingNamedPipeCheckbox.ForeColor = System.Drawing.Color.White;
+            this.IsUsingNamedPipeCheckbox.Location = new System.Drawing.Point(21, 112);
+            this.IsUsingNamedPipeCheckbox.Name = "IsUsingNamedPipeCheckbox";
+            this.IsUsingNamedPipeCheckbox.Size = new System.Drawing.Size(47, 17);
+            this.IsUsingNamedPipeCheckbox.TabIndex = 8;
+            this.IsUsingNamedPipeCheckbox.Text = "Pipe";
+            this.IsUsingNamedPipeCheckbox.UseVisualStyleBackColor = true;
+            this.IsUsingNamedPipeCheckbox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // PipeBox
             // 
@@ -166,7 +166,7 @@
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(185, 216);
             this.Controls.Add(this.PipeBox);
-            this.Controls.Add(this.checkBox1);
+            this.Controls.Add(this.IsUsingNamedPipeCheckbox);
             this.Controls.Add(this.PortBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.OkButton);
@@ -200,7 +200,7 @@
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox PortBox;
-        private System.Windows.Forms.CheckBox checkBox1;
+        private System.Windows.Forms.CheckBox IsUsingNamedPipeCheckbox;
         private System.Windows.Forms.TextBox PipeBox;
     }
 }
