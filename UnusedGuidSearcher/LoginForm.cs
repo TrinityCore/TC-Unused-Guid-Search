@@ -29,6 +29,12 @@ namespace UnusedGuidSearcher
             HostBox.Text = _settings.GetSetting("Host", "localhost");
             PipeBox.Text = _settings.GetSetting("Pipe", "");
             PortBox.Text = _settings.GetSetting("Port", "3724");
+
+            // sets the checkbox for a piped connection if the user has it saved in the settings
+            if (PortBox.Text == "-1")
+            {
+                checkBox1.Checked = true;
+            }
         }
 
         private void SaveSettings()
@@ -98,9 +104,10 @@ namespace UnusedGuidSearcher
 
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
-            if (checkBox1.Checked)
+            if (checkBox1.Checked == true)
             {
                 PortBox.Enabled = false;
+                PipeBox.Enabled = true;
                 PortBox.Text = ""; // clear the string
                 PortBox.Text = "-1"; // sets port to -1 for a named pipe
             }
@@ -108,6 +115,7 @@ namespace UnusedGuidSearcher
             if (checkBox1.Checked == false)
             {
                 PortBox.Enabled = true;
+                PipeBox.Enabled = false;
                 PortBox.Text = ""; //clear the string
                 PortBox.Text = _settings.GetSetting("Port", "3724"); // saved setting
             }
