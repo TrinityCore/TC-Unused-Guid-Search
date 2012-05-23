@@ -39,6 +39,8 @@
             this.OkButton = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.PortBox = new System.Windows.Forms.TextBox();
+            this.IsUsingNamedPipeCheckbox = new System.Windows.Forms.CheckBox();
+            this.PipeBox = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // label1
@@ -118,13 +120,13 @@
             this.OkButton.TabIndex = 5;
             this.OkButton.Text = "Ok";
             this.OkButton.UseVisualStyleBackColor = true;
-            this.OkButton.Click += new System.EventHandler(this.OkButtonClick);
+            this.OkButton.Click += new System.EventHandler(this.OkButton_Click);
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.ForeColor = System.Drawing.SystemColors.ButtonHighlight;
-            this.label3.Location = new System.Drawing.Point(36, 112);
+            this.label3.Location = new System.Drawing.Point(36, 138);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(29, 13);
             this.label3.TabIndex = 6;
@@ -132,11 +134,30 @@
             // 
             // PortBox
             // 
-            this.PortBox.Location = new System.Drawing.Point(74, 112);
+            this.PortBox.Location = new System.Drawing.Point(74, 138);
             this.PortBox.Name = "PortBox";
             this.PortBox.Size = new System.Drawing.Size(100, 20);
             this.PortBox.TabIndex = 7;
-            this.PortBox.Text = "3724";
+            this.PortBox.Text = "3306";
+            // 
+            // IsUsingNamedPipeCheckbox
+            // 
+            this.IsUsingNamedPipeCheckbox.AutoSize = true;
+            this.IsUsingNamedPipeCheckbox.ForeColor = System.Drawing.Color.White;
+            this.IsUsingNamedPipeCheckbox.Location = new System.Drawing.Point(21, 112);
+            this.IsUsingNamedPipeCheckbox.Name = "IsUsingNamedPipeCheckbox";
+            this.IsUsingNamedPipeCheckbox.Size = new System.Drawing.Size(47, 17);
+            this.IsUsingNamedPipeCheckbox.TabIndex = 8;
+            this.IsUsingNamedPipeCheckbox.Text = "Pipe";
+            this.IsUsingNamedPipeCheckbox.UseVisualStyleBackColor = true;
+            this.IsUsingNamedPipeCheckbox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
+            // 
+            // PipeBox
+            // 
+            this.PipeBox.Location = new System.Drawing.Point(74, 112);
+            this.PipeBox.Name = "PipeBox";
+            this.PipeBox.Size = new System.Drawing.Size(100, 20);
+            this.PipeBox.TabIndex = 9;
             // 
             // LoginForm
             // 
@@ -144,6 +165,8 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.DarkSlateGray;
             this.ClientSize = new System.Drawing.Size(185, 216);
+            this.Controls.Add(this.PipeBox);
+            this.Controls.Add(this.IsUsingNamedPipeCheckbox);
             this.Controls.Add(this.PortBox);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.OkButton);
@@ -177,5 +200,7 @@
         private System.Windows.Forms.Button OkButton;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.TextBox PortBox;
+        private System.Windows.Forms.CheckBox IsUsingNamedPipeCheckbox;
+        private System.Windows.Forms.TextBox PipeBox;
     }
 }

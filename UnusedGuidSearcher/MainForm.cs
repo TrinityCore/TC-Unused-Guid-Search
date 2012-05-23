@@ -29,7 +29,7 @@ namespace UnusedGuidSearcher
         {
             // Defaults
             TableComboBox.Items.AddRange(_supportedTables.Keys.ToArray());
-            TableComboBox.Text = (string) TableComboBox.Items[0];
+            TableComboBox.Text = (string)TableComboBox.Items[0];
             RandomRadio.Checked = true;
         }
 
@@ -61,7 +61,7 @@ namespace UnusedGuidSearcher
             if (RandomRadio.Checked)
                 selectedMissingGuids = missingGuids.Take((int)GuidCountUpDown.Value);
             else if (ConsecutiveRadio.Checked)
-                selectedMissingGuids = GetConsecutiveGuids(missingGuids.ToArray(), (int) GuidCountUpDown.Value);
+                selectedMissingGuids = GetConsecutiveGuids(missingGuids.ToArray(), (int)GuidCountUpDown.Value);
 
             var resultForm = new ResultForm(selectedMissingGuids);
             resultForm.Show();
