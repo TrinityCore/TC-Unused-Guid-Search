@@ -8,13 +8,15 @@ namespace UnusedGuidSearcher
 {
     public partial class MainForm : Form
     {
-        private readonly Dictionary<object, string> _supportedTables = new Dictionary<object, string>
+        // table name, primary key
+        private readonly Dictionary<string, string> _supportedTables = new Dictionary<string, string>
         {
 	        {"`creature`", "`guid`"},
 	        {"`gameobject`", "`guid`"},
 	        {"`waypoint_scripts`", "`guid`"},
             {"`pool_template`", "`entry`"},
             {"`game_event`", "`eventEntry`"},
+            {"`creature_equip_template`", "`entry`"},
 	    };
 
         private static string _connectionString;
@@ -28,7 +30,7 @@ namespace UnusedGuidSearcher
         private void MainFormLoad(object sender, EventArgs e)
         {
             // Defaults
-            TableComboBox.Items.AddRange(_supportedTables.Keys.ToArray());
+            TableComboBox.Items.AddRange(_supportedTables.Keys.Cast<object>().ToArray());
             TableComboBox.Text = (string)TableComboBox.Items[0];
             RandomRadio.Checked = true;
         }
@@ -58,7 +60,9 @@ namespace UnusedGuidSearcher
             IEnumerable<int> missingGuids = possibleGuids.Except(existingGuids);
             IEnumerable<int> selectedMissingGuids = null;
 
-            if (RandomRadio.Checked)
+            if (!missingGuids.Any())
+                selectedMissingGuids = Enumerable.Range(existingGuids.Last() + 1, (int)GuidCountUpDown.Value);
+            else if (RandomRadio.Checked)
                 selectedMissingGuids = missingGuids.Take((int)GuidCountUpDown.Value);
             else if (ConsecutiveRadio.Checked)
                 selectedMissingGuids = GetConsecutiveGuids(missingGuids.ToArray(), (int)GuidCountUpDown.Value);
