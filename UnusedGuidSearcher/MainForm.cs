@@ -46,13 +46,9 @@ namespace UnusedGuidSearcher
                 {
                     connection.Open();
                     using (var query = new MySqlCommand(string.Format("SELECT {0} FROM {1}", _supportedTables[selectedTable], selectedTable), connection))
-                    {
                         using (var reader = query.ExecuteReader())
-                        {
                             while (reader != null && reader.Read())
                                 existingGuids.Add(reader.GetInt32(0));
-                            }
-                    }
                 }
             }
             catch (Exception ex)
