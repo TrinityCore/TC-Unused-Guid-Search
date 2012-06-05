@@ -39,25 +39,30 @@ namespace UnusedGuidSearcher
         {
             var selectedTable = TableComboBox.Text;
 
-            MySqlDataReader reader = null;
+            var existingGuids = new List<int>();
             try
             {
-                var connection = new MySqlConnection(_connectionString);
-                connection.Open();
-                var query = new MySqlCommand(string.Format("SELECT {0} FROM {1}", _supportedTables[selectedTable], selectedTable), connection);
-                reader = query.ExecuteReader();
+                using (var connection = new MySqlConnection(_connectionString))
+                {
+                    connection.Open();
+                    using (var query = new MySqlCommand(string.Format("SELECT {0} FROM {1}", _supportedTables[selectedTable], selectedTable), connection))
+                    {
+                        using (var reader = query.ExecuteReader())
+                        {
+                            while (reader != null && reader.Read())
+                                existingGuids.Add(reader.GetInt32(0));
+                            }
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+                return;
             }
 
-            var existingGuids = new List<int>();
-            while (reader != null && reader.Read())
-                existingGuids.Add(reader.GetInt32(0));
-
             var possibleGuids = Enumerable.Range(1, existingGuids.Last());
-            IEnumerable<int> missingGuids = possibleGuids.Except(existingGuids);
+            var missingGuids = possibleGuids.Except(existingGuids);
             IEnumerable<int> selectedMissingGuids = null;
 
             if (!missingGuids.Any())
