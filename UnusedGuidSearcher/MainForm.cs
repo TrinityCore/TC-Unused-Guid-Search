@@ -66,7 +66,10 @@ namespace UnusedGuidSearcher
             else if (RandomRadio.Checked)
                 selectedMissingGuids = missingGuids.Take((int)GuidCountUpDown.Value);
             else if (ConsecutiveRadio.Checked)
-                selectedMissingGuids = GetConsecutiveGuids(missingGuids.ToArray(), (int)GuidCountUpDown.Value);
+            {
+                selectedMissingGuids = GetConsecutiveGuids(missingGuids.ToArray(), (int) GuidCountUpDown.Value) ??
+                                       Enumerable.Range(existingGuids.Last() + 1, (int)GuidCountUpDown.Value);
+            }
 
             var resultForm = new ResultForm(selectedMissingGuids);
             resultForm.Show();
