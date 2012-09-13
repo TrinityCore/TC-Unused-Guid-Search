@@ -17,6 +17,7 @@ namespace UnusedGuidSearcher
             {"`pool_template`", "`entry`"},
             {"`game_event`", "`eventEntry`"},
             {"`creature_equip_template`", "`entry`"},
+            {"`trinity_string`", "`entry`"},
 	    };
 
         private static string _connectionString;
@@ -66,10 +67,8 @@ namespace UnusedGuidSearcher
             else if (RandomRadio.Checked)
                 selectedMissingGuids = missingGuids.Take((int)GuidCountUpDown.Value);
             else if (ConsecutiveRadio.Checked)
-            {
                 selectedMissingGuids = GetConsecutiveGuids(missingGuids.ToArray(), (int) GuidCountUpDown.Value) ??
                                        Enumerable.Range(existingGuids.Last() + 1, (int)GuidCountUpDown.Value);
-            }
 
             var resultForm = new ResultForm(selectedMissingGuids);
             resultForm.Show();
