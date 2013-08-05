@@ -11,14 +11,14 @@ namespace UnusedGuidSearcher
         // table name, primary key
         private readonly Dictionary<string, string> _supportedTables = new Dictionary<string, string>
         {
-	        {"`creature`", "`guid`"},
-	        {"`gameobject`", "`guid`"},
-	        {"`waypoint_scripts`", "`guid`"},
+            {"`creature`", "`guid`"},
+            {"`gameobject`", "`guid`"},
+            {"`waypoint_scripts`", "`guid`"},
             {"`pool_template`", "`entry`"},
             {"`game_event`", "`eventEntry`"},
             {"`creature_equip_template`", "`entry`"},
             {"`trinity_string`", "`entry`"},
-	    };
+        };
 
         private static string _connectionString;
 
@@ -74,13 +74,13 @@ namespace UnusedGuidSearcher
             resultForm.Show();
         }
 
-        private static IEnumerable<int> GetConsecutiveGuids(int[] input, int minimum)
+        private static IEnumerable<int> GetConsecutiveGuids(IList<int> input, int minimum)
         {
             var count = 1;
 
             var result = new List<int>();
 
-            for (var i = 0; i < input.Length - 1; i++)
+            for (var i = 0; i < input.Count - 1; i++)
             {
                 if (input[i] == input[i + 1] - 1)
                 {
