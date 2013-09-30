@@ -2,13 +2,12 @@
 using System.Threading;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
+using UnusedGuidSearcher.Properties;
 
 namespace UnusedGuidSearcher
 {
     public partial class LoginForm : Form
     {
-        private readonly Settings _settings = new Settings();
-
         private string _username;
         private string _password;
         private string _database;
@@ -23,12 +22,12 @@ namespace UnusedGuidSearcher
 
         private void LoginFormLoad(object sender, EventArgs e)
         {
-            UserBox.Text = _settings.GetSetting("User", "root");
-            PasswordBox.Text = _settings.GetSetting("Password", string.Empty);
-            DBBox.Text = _settings.GetSetting("DB", "world");
-            HostBox.Text = _settings.GetSetting("Host", "localhost");
-            PipeBox.Text = _settings.GetSetting("Pipe", string.Empty);
-            PortBox.Text = _settings.GetSetting("Port", "3306");
+            UserBox.Text = Settings.Default.User;
+            PasswordBox.Text = Settings.Default.Password;
+            DBBox.Text = Settings.Default.DB;
+            HostBox.Text = Settings.Default.Host;
+            PipeBox.Text = Settings.Default.Pipe;
+            PortBox.Text = Settings.Default.Port;
 
             // sets the checkbox for a piped connection if the user has it saved in the settings
             if (IsUsingNamedPipeCheckbox.Checked == true)
@@ -44,13 +43,11 @@ namespace UnusedGuidSearcher
                 PortBox.Enabled = true;
                 PipeBox.Enabled = false;
                 PortBox.Text = string.Empty; //clear the string
-                PortBox.Text = _settings.GetSetting("Port", "3306"); // saved setting
+                PortBox.Text = Settings.Default.Port; // saved setting
 
                 // this sets the default port again if someone used a named pipe and didn't have a value before that in the portbox box.
                 if (PortBox.Text == "-1")
-                {
                     PortBox.Text = "3306";
-                }
             }
         }
 
@@ -63,13 +60,13 @@ namespace UnusedGuidSearcher
             _host = HostBox.Text;
             _pipe = PipeBox.Text;
 
-
-            _settings.PutSetting("User", _username);
-            _settings.PutSetting("Password", _password);
-            _settings.PutSetting("DB", _database);
-            _settings.PutSetting("Host", _host);
-            _settings.PutSetting("Pipe", _pipe);
-            _settings.PutSetting("Port", _port);
+            Settings.Default.User = _username;
+            Settings.Default.Password = _password;
+            Settings.Default.DB = _database;
+            Settings.Default.Host = _host;
+            Settings.Default.Pipe = _pipe;
+            Settings.Default.Port = _port;
+            Settings.Default.Save();
         }
 
         private String _connectionString
@@ -134,13 +131,11 @@ namespace UnusedGuidSearcher
                 PortBox.Enabled = true;
                 PipeBox.Enabled = false;
                 PortBox.Text = string.Empty; //clear the string
-                PortBox.Text = _settings.GetSetting("Port", "3306"); // saved setting
+                PortBox.Text = Settings.Default.Port; // saved setting
 
                 // this sets the default port again if someone used a named pipe and didn't have a value before that in the portbox box.
                 if (PortBox.Text == "-1")
-                {
                     PortBox.Text = "3306";
-                }
             }
         }
 
