@@ -20,7 +20,5 @@ namespace UnusedGuidSearcher
             foreach (var guid in _missingGuids)
                 ResultBox.AppendText(guid + "," + Environment.NewLine);
         }
-
-
     }
 }

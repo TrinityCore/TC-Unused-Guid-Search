@@ -90,7 +90,6 @@
             this.consecutiveCheckBox.TabIndex = 7;
             this.consecutiveCheckBox.Text = "Consecutive";
             this.consecutiveCheckBox.UseVisualStyleBackColor = true;
-            this.consecutiveCheckBox.CheckedChanged += new System.EventHandler(this.checkBox1_CheckedChanged);
             // 
             // label1
             // 
