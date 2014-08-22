@@ -33,7 +33,6 @@ namespace UnusedGuidSearcher
             // Defaults
             TableComboBox.Items.AddRange(_supportedTables.Keys.Cast<object>().ToArray());
             TableComboBox.Text = (string)TableComboBox.Items[0];
-            RandomRadio.Checked = true;
         }
 
         private void GoButtonClick(object sender, EventArgs e)
@@ -58,17 +57,18 @@ namespace UnusedGuidSearcher
                 return;
             }
 
+            var minGuid = Convert.ToInt32(minNumericUpDown.Value);
             var possibleGuids = Enumerable.Range(1, existingGuids.Last());
-            var missingGuids = possibleGuids.Except(existingGuids);
-            IEnumerable<int> selectedMissingGuids = null;
+            var missingGuids = possibleGuids.Except(existingGuids).SkipWhile(i => i < minGuid).ToArray();
+            IEnumerable<int> selectedMissingGuids;
 
-            if (!missingGuids.Any())
-                selectedMissingGuids = Enumerable.Range(existingGuids.Last() + 1, (int)GuidCountUpDown.Value);
-            else if (RandomRadio.Checked)
+            if (missingGuids.Length == 0)
+                selectedMissingGuids = Enumerable.Range(Math.Max(existingGuids.Last() + 1, minGuid), (int)GuidCountUpDown.Value);
+            else if (consecutiveCheckBox.Checked)
+                selectedMissingGuids = GetConsecutiveGuids(missingGuids, (int) GuidCountUpDown.Value) ??
+                                       Enumerable.Range(Math.Max(existingGuids.Last() + 1, minGuid), (int)GuidCountUpDown.Value);
+            else
                 selectedMissingGuids = missingGuids.Take((int)GuidCountUpDown.Value);
-            else if (ConsecutiveRadio.Checked)
-                selectedMissingGuids = GetConsecutiveGuids(missingGuids.ToArray(), (int) GuidCountUpDown.Value) ??
-                                       Enumerable.Range(existingGuids.Last() + 1, (int)GuidCountUpDown.Value);
 
             var resultForm = new ResultForm(selectedMissingGuids);
             resultForm.Show();
@@ -98,6 +98,11 @@ namespace UnusedGuidSearcher
             }
 
             return result.Count < minimum ? null : result;
+        }
+
+        private void checkBox1_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
