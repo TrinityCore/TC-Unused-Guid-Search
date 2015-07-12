@@ -12,10 +12,10 @@ namespace UnusedGuidSearcher
         {
             {"`creature`", "`guid`"},
             {"`gameobject`", "`guid`"},
-            {"`waypoint_scripts`", "`guid`"},
+            {"`waypoint_scripts`", "`id`"},
             {"`pool_template`", "`entry`"},
             {"`game_event`", "`eventEntry`"},
-            {"`creature_equip_template`", "`entry`"},
+            {"`creature_equip_template`", "`CreatureID`"},
             {"`trinity_string`", "`entry`"},
         };
 
